@@ -12,7 +12,8 @@ This app is built to make the experience of looking for a pet more interactive a
 
 * First, clone the repository by running
   `git clone https://github.com/ericamcconnaughey/underdog-rescue`
-* Next, install dependencies by running `npm...`
+* Next, install dependencies using npm or yarn.     
+  * Find more information about npm here: https://www.npmjs.com/get-npm
 * Then, start up the app by running `expo start` -- this will open a page in your default web browser. From there, select your desired device/emulator/simulator.
   * To download an Android emulator, go to: https://developer.android.com/studio
   * To download an iOS simulator, go to: https://docs.expo.io/versions/latest/workflow/ios-simulator/
