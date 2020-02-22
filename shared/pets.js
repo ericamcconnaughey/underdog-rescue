@@ -58,7 +58,7 @@ export const PETS = [
     id: 6,
         name: "Truffle",
         image: "../components/images/truffle.jpeg",
-        featured: false,
+        featured: true,
         type: "cat",
         info: "Young Male Domestic Shorthair",
         description: "Meet Truffle! He's part of our Sweet Treats litter with Pepper & Mocha, 6 months-old (1/28), sweet, and stunning! Truffle is a handsome lovebug who cuddles with his whole body. Likes: Watching TV, playing computer games, hiking around his home, naps, bags, and boxes "
@@ -85,7 +85,7 @@ export const PETS = [
     id: 9,
         name: "Winnie",
         image: "../components/images/winnie.jpeg",
-        featured: false,
+        featured: true,
         type: "dog",
         info: "Female Adult Mixed Breed",
         description: "Meet Winnie! Winnie is about 1-year-old and 41-pounds. She ended up in a rural Alabama shelter, with a limp. The Underdog veterinarians decided that FHO surgery was her best option. She had this done on 2/20 is recovering very well. Winnie is the sweetest, floppiest, smiling dog you will ever meet. Everyone is her best friend and she is just so excited about life. She gets along with dogs of all sizes and ages, cats, and kids."
