@@ -4,11 +4,12 @@ import { Text, View, ScrollView, FlatList,
 import { Card, Icon } from 'react-native-elements';
 import * as Animatable from 'react-native-animatable';
 
-const mapStateToProps = state => {
-  return {
-    pets: state.pets,
-  };
-};
+// USE REDUX??
+// const mapStateToProps = state => {
+//   return {
+//     pets: state.pets,
+//   };
+// };
 
 function RenderPet(props) {
 
@@ -28,10 +29,19 @@ function RenderPet(props) {
 
 class Adopt extends Component {
   constructor(props) {
-  super(props);
+    super(props);
 
-  this.state = {
+    this.state = {
 
+    }
+  }
+
+  render() {
+    return (
+      <ScrollView>
+        <RenderPet pet={pet} />
+      </ScrollView>
+    )
   }
   
 };
