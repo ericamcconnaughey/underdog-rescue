@@ -1,10 +1,11 @@
 import React, { Component } from 'react';
 import Adopt from './AdoptComponent';
-import { View, Text, StyleSheet, Image } from 'react-native';
+import { View, Text, StyleSheet, Image, ScrollView } from 'react-native';
 //import { } from 'react-navigation';
 import { Icon } from 'react-native-elements';
 import SafeAreaView from 'react-native-safe-area-view';
-import { createStackNavigator, createDrawerNavigator } from 'react-navigation';
+import { createStackNavigator, createDrawerNavigator, 
+  DrawerItems } from 'react-navigation';
 
 const AdoptNavigator = createStackNavigator(
   {
@@ -28,20 +29,38 @@ const AdoptNavigator = createStackNavigator(
   },
 )
 
+const CustomDrawerContentComponent = props => (
+  <ScrollView>
+    <SafeAreaView 
+        style={styles.container}
+        forceInset={{top: 'always', horizontal: 'never'}}>
+      <View style={styles.drawerHeader}>
+        <View style={{flex: 1}}>
+          <Image source={require('./images/logo.png')} style={styles.drawerImage} />
+        </View>
+        <View style={{flex: 2}}>
+          <Text style={styles.drawerHeaderText}>Underdog Rescue</Text>
+        </View>
+      </View>
+      <DrawerItems {...props} />
+    </SafeAreaView>
+  </ScrollView>
+)
+
 const MainNavigator = createDrawerNavigator(
   {
     Adopt: {
       screen: AdoptNavigator,
       navigationOptions: {
-        drawerIcon: ({tintColor}) => (
+        drawerIcon: () => (
           <Icon 
-              name='dog'
+              name='cat'
               type='font-awesome'
               size={24}
-              color={tintColor}/>
+              color= '#F6EFE4' />
         )
-      }
-    },
+      },
+    }
   },
   {
     drawerBackgroundColor: '#F8633B',
