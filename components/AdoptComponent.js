@@ -1,48 +1,37 @@
 import React, { Component } from 'react';
-import { PETS } from '../shared/pets';
 import { Text, View, ScrollView, FlatList, 
   Modal, Button, StyleSheet, Alert, PanResponder } from 'react-native';
-import { Card, Icon } from 'react-native-elements';
-import * as Animatable from 'react-native-animatable';
+import { Card, Icon, Tile } from 'react-native-elements';
+//import * as Animatable from 'react-native-animatable';
 
-// USE REDUX??
-// const mapStateToProps = state => {
-//   return {
-//     pets: state.pets,
-//   };
-// };
-
-function RenderPet(props) {
-
- return (
-   <View>
-     <Card
-       featuredTitle={props.name}
-       image={props.image}>
-        <Text style={{fontWeight: 'bold'}}>{props.info}</Text>
-        <Text>{props.description}</Text>
-     </Card>
-   </View>
- )
-}
 
 class Adopt extends Component {
-  constructor(props) {
-    super(props);
 
-    this.state = {
-      pets: PETS
-    }
-  }
+  static navigationOptions = {
+    title: 'Adopt'
+  };
 
   render() {
+    const { navigate } = this.props.navigation;
+    const renderAdoptItem = ({item}) => {
+      return (
+        <View>
+          <Button
+            title='Find a Match'
+            color='#361D1E'
+            onPress={() => navigate.navigate('Match')} />
+        </View>
+      )
+    }
+
     return (
-      <ScrollView>
-        <RenderPet />
-      </ScrollView>
+      <FlatList
+        data={this.props.pets}
+        renderItem={renderAdoptItem}
+        keyExtractor={item => item.id.toString()}
+        />
     )
   }
-  
 };
 
 

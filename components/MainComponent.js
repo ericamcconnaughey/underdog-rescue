@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import Adopt from './AdoptComponent';
+import Match from './MatchComponent';
 import { View, Text, StyleSheet, Image, ScrollView } from 'react-native';
-//import { } from 'react-navigation';
 import { Icon } from 'react-native-elements';
 import SafeAreaView from 'react-native-safe-area-view';
 import { createStackNavigator, createDrawerNavigator, 
@@ -9,9 +9,7 @@ import { createStackNavigator, createDrawerNavigator,
 
 const AdoptNavigator = createStackNavigator(
   {
-    Adopt: { screen: Adopt }
-  },
-  {
+    Adopt: { screen: Adopt, 
     navigationOptions: ({navigation}) => ({
       headerStyle: {
         backgroundColor: '#F8BC3C'
@@ -27,7 +25,21 @@ const AdoptNavigator = createStackNavigator(
         onPress={() => navigation.toggleDrawer()}/>
     })
   },
-)
+    Match: { screen: Match }
+  },
+  {
+    initialRouteName: 'Adopt',
+    navigationOptions: {
+      headerStyle: {
+        backgroundColor: '#F8633B'
+      },
+      headerTintColor: '#fff',
+      headerTitleStyle: {
+        color: '#fff'
+      }
+    }
+  }
+);
 
 const CustomDrawerContentComponent = props => (
   <ScrollView>
