@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import Adopt from './AdoptComponent';
-import { View, Text, StyleSheet, Image, ScrollView } from 'react-native';
-//import { } from 'react-navigation';
+import Match from './MatchComponent';
+import { PETS } from '../shared/pets';
+import { View, Platform, Text, StyleSheet, Image, ScrollView } from 'react-native';
 import { Icon } from 'react-native-elements';
 import SafeAreaView from 'react-native-safe-area-view';
 import { createStackNavigator, createDrawerNavigator, 
@@ -9,9 +10,7 @@ import { createStackNavigator, createDrawerNavigator,
 
 const AdoptNavigator = createStackNavigator(
   {
-    Adopt: { screen: Adopt }
-  },
-  {
+    Adopt: { screen: Adopt, 
     navigationOptions: ({navigation}) => ({
       headerStyle: {
         backgroundColor: '#F8BC3C'
@@ -27,7 +26,23 @@ const AdoptNavigator = createStackNavigator(
         onPress={() => navigation.toggleDrawer()}/>
     })
   },
-)
+    Match: { screen: Match }
+  },
+  {
+    initialRouteName: 'Adopt',
+    navigationOptions: {
+      headerStyle: {
+        backgroundColor: '#F8633B'
+      },
+      headerTintColor: '#fff',
+      headerTitleStyle: {
+        color: '#fff'
+      }
+    }
+  }
+);
+
+
 
 const CustomDrawerContentComponent = props => (
   <ScrollView>
@@ -69,13 +84,29 @@ const MainNavigator = createDrawerNavigator(
 )
 
 class Main extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      pets: PETS,
+      selectedPet: null
+    };
+  }
+
+  onPetSelect(petId) {
+    this.setState({selectedPet: petId});
+  }
+
   render() {
     return (
-      <View style={{
-        flex: 1,
-        paddingTop: Platform.OS === 'ios' ? 0 : Expo.Constants.statusBarHeight
-      }}>
-        <MainNavigator />
+      <View style={{flex: 1,
+          paddingTop: Platform.OS === 'ios' ? 0 : Expo.Constants.statusBarHeight}}>
+            <MainNavigator />
+        {/* <Adopt 
+          pets={this.state.pets} 
+          onPress={petId => this.onPetSelect(petId)} 
+        />
+        <Match 
+          pet={this.state.pets.filter(pet => pet.id === this.state.selectedCampsite)[0]} /> */}
       </View>
     );
   }
