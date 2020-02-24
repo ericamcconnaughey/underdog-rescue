@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import Adopt from './AdoptComponent';
 import Match from './MatchComponent';
-import { View, Text, StyleSheet, Image, ScrollView } from 'react-native';
+import { PETS } from '../shared/pets';
+import { View, Platform, Text, StyleSheet, Image, ScrollView } from 'react-native';
 import { Icon } from 'react-native-elements';
 import SafeAreaView from 'react-native-safe-area-view';
 import { createStackNavigator, createDrawerNavigator, 
@@ -40,6 +41,8 @@ const AdoptNavigator = createStackNavigator(
     }
   }
 );
+
+
 
 const CustomDrawerContentComponent = props => (
   <ScrollView>
@@ -81,13 +84,29 @@ const MainNavigator = createDrawerNavigator(
 )
 
 class Main extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      pets: PETS,
+      selectedPet: null
+    };
+  }
+
+  onPetSelect(petId) {
+    this.setState({selectedPet: petId});
+  }
+
   render() {
     return (
-      <View style={{
-        flex: 1,
-        paddingTop: Platform.OS === 'ios' ? 0 : Expo.Constants.statusBarHeight
-      }}>
-        <MainNavigator />
+      <View style={{flex: 1,
+          paddingTop: Platform.OS === 'ios' ? 0 : Expo.Constants.statusBarHeight}}>
+            <MainNavigator />
+        {/* <Adopt 
+          pets={this.state.pets} 
+          onPress={petId => this.onPetSelect(petId)} 
+        />
+        <Match 
+          pet={this.state.pets.filter(pet => pet.id === this.state.selectedCampsite)[0]} /> */}
       </View>
     );
   }

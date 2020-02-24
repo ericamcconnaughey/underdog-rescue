@@ -5,21 +5,20 @@ import { Text, View, ScrollView, FlatList,
 import { Card, Icon } from 'react-native-elements';
 //import * as Animatable from 'react-native-animatable';
 
-function RenderPet(props) {
+function RenderPet({pet}) {
 
-  const {pet} = props;
-  
- return (
-   <View>
-     <Card
-       featuredTitle={pet.name}
-       image={pet.image}>
-        <Text style={{fontWeight: 'bold'}}>{pet.info}</Text>
-        <Text>{pet.description}</Text>
-     </Card>
-   </View>
- )
-}
+  if (pet) {
+    return (
+        <Card
+          featuredTitle={pet.name}
+          image={require('./images/bella.jpg')}>
+            <Text style={{margin: 10}}>{pet.info}</Text>
+            <Text style={{margin: 10}}>{pet.description}</Text>
+        </Card>
+    );
+  }
+  return <View />;
+  }
 
 class Match extends Component {
   constructor(props) {
@@ -35,10 +34,13 @@ class Match extends Component {
   };
 
   render() {
+    const petId = this.props.navigation.getParam('petId');
+    const pet = this.state.pets.filter(pet => pet.id === petId)[0];
     return (
-      <ScrollView>
-        <RenderPet pet={this.props} />
-      </ScrollView>
+      // <ScrollView>
+      //   <RenderPet pet={this.props} />
+      // </ScrollView>
+      <RenderPet pet={pet} />
     )
   }
   
