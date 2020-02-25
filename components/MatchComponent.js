@@ -5,7 +5,9 @@ import { Text, View, ScrollView, FlatList,
 import { Card, Icon } from 'react-native-elements';
 //import * as Animatable from 'react-native-animatable';
 
-function RenderPet({pet}) {
+function RenderPet(props) {
+
+  const {pet} = props;
 
   if (pet) {
     return (
@@ -30,7 +32,7 @@ class Match extends Component {
   }
 
   static navigationOptions = {
-    title: 'Match'
+    title: 'Pet Match'
   };
 
   render() {
@@ -48,3 +50,52 @@ class Match extends Component {
 
 
 export default Match;
+
+
+
+//OLD WORKING ADOPT COMPONENT
+
+
+// class Adopt extends Component {
+
+//   constructor(props) {
+//     super(props);
+//     this.state = {
+//       pets: PETS,
+//       process: PROCESS
+//     };
+//   }
+
+//   static navigationOptions = {
+//     title: 'Adopt'
+//   };
+
+//   render() {
+//     const { navigate } = this.props.navigation;
+//     const renderAdoptItem = ({item}) => {
+//       return (
+//         //<View>
+//           <ListItem
+//               title={item.name}
+//               subtitle={item.type}
+//               onPress={() => navigate('Match', { petId: item.id})}
+//               leftAvatar={{ source: require('./images/bella.jpg')}}
+//           />
+//           /* <Button
+//             title='Find a Match'
+//             color='#361D1E'
+//             onPress={() => navigate.navigate('Match')} /> */
+//         //</View>
+//       );
+//     };
+
+
+//     return (
+//       <FlatList
+//         data={this.state.pets}
+//         renderItem={renderAdoptItem}
+//         keyExtractor={item => item.id.toString()}
+//         />
+//     );
+//   };
+// }

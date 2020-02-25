@@ -3,10 +3,10 @@ import Adopt from './AdoptComponent';
 import Match from './MatchComponent';
 import { PETS } from '../shared/pets';
 import { View, Platform, Text, StyleSheet, Image, ScrollView } from 'react-native';
-import { Icon } from 'react-native-elements';
 import SafeAreaView from 'react-native-safe-area-view';
 import { createStackNavigator, createDrawerNavigator, 
   DrawerItems } from 'react-navigation';
+import Icon from "react-native-vector-icons/FontAwesome5"
 
 const AdoptNavigator = createStackNavigator(
   {
@@ -22,8 +22,8 @@ const AdoptNavigator = createStackNavigator(
       headerLeft: <Icon
         name='dog'
         type='font-awesome'
-        iconStyle={styles.stackIcon}
-        onPress={() => navigation.toggleDrawer()}/>
+        style={styles.stackIcon}
+        onPress={() => navigation.toggleDrawer()} />
     })
   },
     Match: { screen: Match }
