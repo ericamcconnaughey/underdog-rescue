@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import Adopt from './AdoptComponent';
 import Match from './MatchComponent';
+import PetInfo from './PetInfoComponent';
 import { PETS } from '../shared/pets';
 import { View, Platform, Text, StyleSheet, Image, ScrollView } from 'react-native';
 import SafeAreaView from 'react-native-safe-area-view';
@@ -10,7 +11,8 @@ import Icon from "react-native-vector-icons/FontAwesome5"
 
 const AdoptNavigator = createStackNavigator(
   {
-    Adopt: { screen: Adopt, 
+    Adopt: { 
+    screen: Adopt, 
     navigationOptions: ({navigation}) => ({
       headerStyle: {
         backgroundColor: '#F8BC3C'
@@ -26,22 +28,23 @@ const AdoptNavigator = createStackNavigator(
         onPress={() => navigation.toggleDrawer()} />
     })
   },
-    Match: { screen: Match }
+    Match: { screen: Match },
+    PetInfo: {screen: PetInfo },
   },
+
   {
     initialRouteName: 'Adopt',
     navigationOptions: {
       headerStyle: {
-        backgroundColor: '#F8633B'
+        backgroundColor: '#F8BC3C'
       },
-      headerTintColor: '#fff',
+      headerTintColor: '#F6EFE4',
       headerTitleStyle: {
-        color: '#fff'
+        color: '#F6EFE4'
       }
     }
   }
 );
-
 
 
 const CustomDrawerContentComponent = props => (
@@ -100,13 +103,7 @@ class Main extends Component {
     return (
       <View style={{flex: 1,
           paddingTop: Platform.OS === 'ios' ? 0 : Expo.Constants.statusBarHeight}}>
-            <MainNavigator />
-        {/* <Adopt 
-          pets={this.state.pets} 
-          onPress={petId => this.onPetSelect(petId)} 
-        />
-        <Match 
-          pet={this.state.pets.filter(pet => pet.id === this.state.selectedCampsite)[0]} /> */}
+        <MainNavigator />
       </View>
     );
   }
@@ -114,10 +111,10 @@ class Main extends Component {
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1
+    flex: 1,
+    color: '#F6EFE4'
   },
   drawerHeader: {
-    backgroundColor: '#361D1E',
     height: 140,
     alignItems: 'center',
     justifyContent: 'center',
@@ -126,7 +123,7 @@ const styles = StyleSheet.create({
   },
   drawerHeaderText: {
     color: '#F6EFE4',
-    fontSize: 24,
+    fontSize: 20,
     fontWeight: 'bold'
   },
   drawerImage: {
