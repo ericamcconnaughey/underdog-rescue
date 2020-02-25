@@ -14,7 +14,7 @@ class Adopt extends Component {
   }
 
   static navigationOptions = {
-    title: 'Adopt'
+    title: 'Adoption Process'
   };
 
   render() {
@@ -31,18 +31,22 @@ class Adopt extends Component {
     };
 
     return (
-      <ScrollView>
-        <Text style={styles.headerText}>Our Adoption Process</Text>
-        <Image source={require('./images/process1.jpg')} />
-        <Button
-          title='Pet Match'
-          color='#F8633B'
-          onPress={() => navigate('Match')} 
-        />
-        <FlatList
-            data={this.state.process}
-            renderItem={renderAdoptItem}
-            keyExtractor={item => item.id.toString()} />
+      <ScrollView style={styles.container}>
+        <View style={styles.content}>
+          <Image source={require('./images/process2.jpg')} />
+          <Button
+            title='Pet Match'
+            color='#F8633B'
+            onPress={() => navigate('Match')} 
+          />
+          <View style={styles.list}>
+            <FlatList
+                data={this.state.process}
+                renderItem={renderAdoptItem}
+                keyExtractor={item => item.id.toString()} />
+            <Image style={styles.image} source={require('./images/process1.jpg')} />
+          </View>
+        </View>
       </ScrollView>
     )
   }
@@ -64,12 +68,18 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     margin: 20
   },
-  headerText: {
-    justifyContent: 'center',
-    alignContent: 'center',
-    margin: 20,
-    fontSize: 20,
-    fontWeight: 'bold'
+  container: {
+    flex: 1
+  },
+  content: {
+    flex: 1
+  },
+  list: {
+    marginTop:10,
+    flex: 1
+  },
+  image: {
+    marginTop: 20,
   }
 });
 
