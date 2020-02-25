@@ -17,11 +17,11 @@ function RenderPet(props) {
             <Text style={{margin: 10}}>{pet.info}</Text>
             <Text style={{margin: 10}}>{pet.description}</Text>
             <Icon
-              name='heart-o'
+              name={props.favorite ? 'heart' : 'heart-o'}
               type='font-awesome'
               color='#F8633B'
-              raised
-              reverse /> 
+              onPress={() => props.favorite ? 
+                console.log('Already marked as a favorite.') : props.markFavorite()} /> 
         </Card>
     );
   }
@@ -33,8 +33,13 @@ class PetInfo extends Component {
     super(props);
 
     this.state = {
-      pets: PETS
-    }
+      pets: PETS,
+      favorite: false
+    };
+  }
+
+  markFavorite() {
+    this.setState({favorite: true});
   }
 
   static navigationOptions = {
@@ -45,9 +50,9 @@ class PetInfo extends Component {
     const petId = this.props.navigation.getParam('petId');
     const pet = this.state.pets.filter(pet => pet.id === petId)[0];
     return (
-      
-        <RenderPet pet={pet} />
-      
+      <RenderPet pet={pet} 
+        favorite={this.state.favorite} 
+        markFavorite={() => this.markFavorite()} />
     )
   }
   
