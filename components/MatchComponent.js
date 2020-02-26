@@ -3,7 +3,6 @@ import { PETS } from '../shared/pets';
 import Swipe from './SwipeComponent';
 import { Text, View, Image, StyleSheet, SafeAreaView } from 'react-native';
 import { Card, Button } from 'react-native-elements';
-// import SafeAreaView from 'react-native-safe-area-view';
 
 class Match extends Component {
   state = {
@@ -80,69 +79,7 @@ const styles = StyleSheet.create({
     paddingTop: 10,
     flexDirection: 'row',
     justifyContent: 'space-around'
-  },
-  // details: {
-
-  // }
+  }
 });
 
 export default Match;
-
-
-
-
-
-
-
-
-// OLD MATCH COMPONENT
-// class Match extends Component {
-
-//   constructor(props) {
-//     super(props);
-//     this.state = {
-//       pets: PETS
-//     };
-//   }
-
-//   static navigationOptions = {
-//     title: 'Pet Match'
-//   };
-
-//   render() {
-//     const { navigate } = this.props.navigation;
-//     const renderAdoptItem = ({item}) => {
-//       return (
-//           <ListItem
-//               title={item.name}
-//               subtitle={item.type}
-//               onPress={() => navigate('PetInfo', {petId: item.id})}
-//               leftAvatar={{ source: require('./images/bella.jpg')}}
-//           />
-//       );
-//     };
-
-
-//     return (
-//       <View>
-//         <Text style={styles.headerText}>Our Adoptables</Text>
-//         <FlatList
-//           data={this.state.pets}
-//           renderItem={renderAdoptItem}
-//           keyExtractor={item => item.id.toString()}
-//           />
-//         </View>
-//     );
-//   };
-// }
-
-// const styles = StyleSheet.create({
-//   headerText: {
-//     justifyContent: 'center',
-//     alignContent: 'center',
-//     margin: 20,
-//     fontSize: 20,
-//     fontWeight: 'bold'
-//   },
-// })
-
