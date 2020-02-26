@@ -82,22 +82,6 @@ class Swipe extends Component {
     };
   }
 
-  // renderCardItem = (item, i) => {
-  //   if (!this.props.data.length) {
-  //     return this.props.renderNoMoreCards();
-  //   }
-  //   return ( //(i === 0) ? (
-  //     <Animated.View 
-  //       style={this.getCardStyle()}
-  //       key={item.petId}
-  //       {...this._panResponder.panHandlers}>
-  //       {this.props.renderCard(item)}
-  //     </Animated.View>
-  //   ) //: (
-  //     //<View key={item.petId}>{this.props.renderCard(item)}</View>
-  //   //);
-  // };
-
   renderCards = () => {
     if (this.state.index >= this.props.data.length) {
       return this.props.renderNoMoreCards();
@@ -127,7 +111,7 @@ class Swipe extends Component {
     })
  
 
-  return Platform.OS === 'android' ? deck.reverse() : deck.reverse();
+  return deck.reverse();
 };
 
   render() {
