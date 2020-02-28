@@ -75,3 +75,14 @@ export const addProcess = process => ({
   type: ActionTypes.ADD_PROCESS,
   payload: process
 });
+
+export const postFavorite = petId => dispatch => {
+  setTimeout(() => {
+      dispatch(addFavorite(petId));
+  }, 2000);
+};
+
+export const addFavorite = petId => ({
+  type: ActionTypes.ADD_FAVORITE,
+  payload: petId
+});

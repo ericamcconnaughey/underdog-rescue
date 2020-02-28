@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-import { View, Text, PanResponder, Animated, Dimensions, StyleSheet, UIManager, LayoutAnimation, Platform, } from 'react-native';
+import { View, PanResponder, Animated, 
+  Dimensions, StyleSheet, UIManager, LayoutAnimation } from 'react-native';
 
 const SCREEN_WIDTH = Dimensions.get('window').width;
 const SWIPE_THRESHOLD = 0.25 * SCREEN_WIDTH;

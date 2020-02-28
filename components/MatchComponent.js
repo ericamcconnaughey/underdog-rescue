@@ -3,6 +3,21 @@ import { PETS } from '../shared/pets';
 import Swipe from './SwipeComponent';
 import { Text, View, Image, StyleSheet, SafeAreaView, Modal } from 'react-native';
 import { Card, Button } from 'react-native-elements';
+import { connect } from 'react-redux';
+import { baseUrl } from '../shared/baseUrl';
+// import { postFavorite } from '../redux/ActionCreators';
+
+
+const mapStateToProps = state => {
+  return {
+    pets: state.pets,
+    favorites: state.favorites
+  };
+};
+
+// const mapDispatchToProps = {
+//   postFavorite: petId => (postFavorite(petId))
+// };
 
 class Match extends Component {
   state = {
@@ -31,12 +46,18 @@ class Match extends Component {
     }));
   };
 
+  markFavorite(petId) {
+    this.props.postFavorite(petId);
+  }
+
   renderCards(pet) {
     return (
       <Card
-        title={pet.name}>
+        title={pet.name}
+        // image={{uri: baseUrl + pet.image}}
+      >
         <View style={{ height: 200 }}>
-          <Image source={require('./images/bella.jpg')}
+          <Image source={{uri: baseUrl + pet.image}}
             style={{ width: '100%', height: 200 }} />
         </View>
         <View style={styles.details}>
@@ -138,4 +159,4 @@ const styles = StyleSheet.create({
   }
 });
 
-export default Match;
+export default connect(mapStateToProps)(Match);
