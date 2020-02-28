@@ -3,7 +3,7 @@ export const PROCESS =
     {
         id: 0,
         title: "Search",
-        info: "Check out our list of current adoptables by clicking Pet Match above.",
+        info: "Check out our list of current adoptables by clicking the button above.",
         image: './components/images/process1.jpg'
     },
     {

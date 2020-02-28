@@ -1,4 +1,3 @@
-//adoptable animal database
 export const PETS = [
   {
     id: 0,
@@ -25,7 +24,7 @@ export const PETS = [
         featured: false,
         type: "Dog",
         info: "Male Young Mixed Breed",
-        description: "Meet Butters! Butters is around 8 months old and 40lbs. He ended up in a rural Alabama shelter that euthanizes for space weekly. He is friendly with people and loves other dogs. Now in WI, he is working on basic training skills. He is an active young dog who would love an active family to share adventures with him. He is such a sweet and handsome boy who deserves an amazing forever family."
+        description: "Meet Butters! Butters is around 8 months old and 40lbs. He ended up in a rural Alabama shelter that euthanizes for space weekly. He is friendly with people and loves other dogs."
   },
   {
     id: 3,
@@ -52,7 +51,7 @@ export const PETS = [
 //         featured: false,
 //         type: "Dog",
 //         info: "Male Adult Mixed Breed",
-//         description: "Meet Scooter! Scooter is about 4-years-old and 30-pounds. He was acquired by a woman to hunt squirrels in her yard. But, he wasn't a fan of this job, so after a week she left him in the overnight drop box at a rural Alabama shelter. He's a sweetheart and a love-bug, so the shelter really wanted Underdog to take him! What Scooter wants most in life is getting love and attention. Scooter is a little timid and would love a patient family to give him time to settle in."
+//         description: "Meet Scooter! Scooter is about 4-years-old and 30-pounds. He's a sweetheart and a love-bug. What Scooter wants most in life is getting love and attention. Scooter is a little timid and would love a patient family to give him time to settle in."
 //   },
 //   {
 //     id: 6,
@@ -61,7 +60,7 @@ export const PETS = [
 //         featured: true,
 //         type: "Cat",
 //         info: "Young Male Domestic Shorthair",
-//         description: "Meet Truffle! He's part of our Sweet Treats litter with Pepper & Mocha, 6 months-old (1/28), sweet, and stunning! Truffle is a handsome lovebug who cuddles with his whole body. Likes: Watching TV, playing computer games, hiking around his home, naps, bags, and boxes "
+//         description: "Meet Truffle! He's part of our Sweet Treats litter with Pepper & Mocha, 6 months-old (1/28), sweet, and stunning! Truffle is a handsome lovebug who cuddles with his whole body. Likes: Watching TV, playing computer games, naps, bags, and boxes "
 //   },
 //   {
 //     id: 7,
@@ -70,7 +69,7 @@ export const PETS = [
 //         featured: false,
 //         type: "Dog",
 //         info: "Female Young Mixed Breed",
-//         description: "Meet Tundra! Tundra is around 5 months old and 25lbs. Tundra had an intestinal issue and has now had surgery to fix it, but may need a special prescription diet for life as a result. This gorgeous girl loves cuddling, playing with toys and going for walks. She is crate trained and she's doing great with house training for a 5 month old pup and now goes to the door to signal at times."
+//         description: "Meet Tundra! Tundra is around 5 months old and 25lbs. Tundra had an intestinal issue and has now had surgery to fix it, but may need a special prescription diet for life as a result. This gorgeous girl loves cuddling, playing with toys, and going for walks. She is crate trained and she's doing great with house training."
 //   },
 //   {
 //     id: 8,
@@ -88,6 +87,6 @@ export const PETS = [
 //         featured: true,
 //         type: "Dog",
 //         info: "Female Adult Mixed Breed",
-//         description: "Meet Winnie! Winnie is about 1-year-old and 41-pounds. She ended up in a rural Alabama shelter, with a limp. The Underdog veterinarians decided that FHO surgery was her best option. She had this done on 2/20 is recovering very well. Winnie is the sweetest, floppiest, smiling dog you will ever meet. Everyone is her best friend and she is just so excited about life. She gets along with dogs of all sizes and ages, cats, and kids."
+//         description: "Meet Winnie! Winnie is about 1-year-old and 41-pounds. She ended up in a rural Alabama shelter, with a limp. She had FHO surgery on 2/20 and is recovering very well. Winnie is the sweetest dog you will ever meet. She gets along with dogs of all sizes and ages, cats, and kids."
 //   }
 ]
