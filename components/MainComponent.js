@@ -3,8 +3,7 @@ import Adopt from './AdoptComponent';
 import Match from './MatchComponent';
 import PetInfo from './PetInfoComponent';
 import { PETS } from '../shared/pets';
-import { View, Platform, Text, StyleSheet, Image, ScrollView } from 'react-native';
-import SafeAreaView from 'react-native-safe-area-view';
+import { View, Platform, Text, StyleSheet, Image, ScrollView, SafeAreaView } from 'react-native';
 import { createStackNavigator, createDrawerNavigator, 
   DrawerItems } from 'react-navigation';
 import Icon from "react-native-vector-icons/FontAwesome5"
