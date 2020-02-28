@@ -164,7 +164,7 @@ const AdoptNavigator = createStackNavigator(
         color: '#F6EFE4'
       },
       headerLeft: <Icon
-        name='dog'
+        name='cat'
         type='font-awesome'
         style={styles.stackIcon}
         onPress={() => navigation.toggleDrawer()} />
