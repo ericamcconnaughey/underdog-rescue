@@ -22,3 +22,16 @@ class Favorites extends Component {
 }
 
 export default Favorites;
+
+// FROM MAIN COMPONENT
+// constructor(props) {
+//   super(props);
+//   this.state = {
+//     pets: PETS,
+//     selectedPet: null
+//   };
+// }
+
+// onPetSelect(petId) {
+//   this.setState({selectedPet: petId});
+// }

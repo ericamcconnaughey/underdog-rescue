@@ -1,34 +1,58 @@
 import React, { Component } from 'react';
 import { Text, View, FlatList, StyleSheet, Image, ScrollView } from 'react-native';
-import { Card, Button } from 'react-native-elements';
-import { PROCESS } from '../shared/process';
-//import * as Animatable from 'react-native-animatable';
+import { Card, Button, ListItem } from 'react-native-elements';
+import { connect } from 'react-redux';
+import { baseUrl } from '../shared/baseUrl';
+import Loading from './LoadingComponent';
+import * as Animatable from 'react-native-animatable';
+
+const mapStateToProps = state => {
+  return {
+    process: state.process
+  }
+};
 
 class Adopt extends Component {
 
-  constructor(props) {
-    super(props);
-    this.state = {
-      process: PROCESS
-    };
-  }
-
   static navigationOptions = {
-    title: 'Adoption Process'
-  };
+    title: 'Adoption'
+  }; 
 
   render() {
     const { navigate } = this.props.navigation;
 
-    const renderAdoptItem = ({item}) => {
+    const renderProcessItem = ({item}) => {
       return (
-        <View>
           <Card title={item.title}>
             <Text>{item.info}</Text>
           </Card>
-        </View>
       )
     };
+
+    if (this.props.process.isLoading) {
+      return (
+        <ScrollView>
+        <Card
+          title='Our Adoption Process'>
+            <Loading />
+        </Card>
+      </ScrollView>
+      );
+    }
+
+    if (this.props.process.errMess) {
+      return (
+        <ScrollView>
+          <Animatable.View animation='fadeInDown' duration={2000} delay={1000}>
+            <Mission />
+            <Card
+              title='Our Adoption Process'>
+                <Text>{this.props.process.errMess}</Text>
+            </Card>
+          </Animatable.View>
+        </ScrollView>
+      );
+    }
 
     return (
       <ScrollView style={styles.container}>
@@ -45,8 +69,8 @@ class Adopt extends Component {
           />
           <View style={styles.list}>
             <FlatList
-                data={this.state.process}
-                renderItem={renderAdoptItem}
+                data={this.props.process.process}
+                renderItem={renderProcessItem}
                 keyExtractor={item => item.id.toString()} />
             <Image style={styles.image} source={require('./images/process1.jpg')} />
           </View>
@@ -90,4 +114,4 @@ const styles = StyleSheet.create({
 
 
 
-export default Adopt;
+export default connect(mapStateToProps)(Adopt);
