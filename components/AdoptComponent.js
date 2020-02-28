@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import { Text, View, FlatList, StyleSheet, Image, Button, ScrollView } from 'react-native';
-import { Card } from 'react-native-elements';
+import { Text, View, FlatList, StyleSheet, Image, ScrollView } from 'react-native';
+import { Card, Button } from 'react-native-elements';
 import { PROCESS } from '../shared/process';
 //import * as Animatable from 'react-native-animatable';
 
@@ -35,8 +35,12 @@ class Adopt extends Component {
         <View style={styles.content}>
           <Image source={require('./images/process2.jpg')} />
           <Button
-            title='Pet Match'
-            color='#F8633B'
+            title='Find a Pet Match'
+            buttonStyle={{ 
+              backgroundColor: '#F8633B', 
+              width: 200, 
+              alignSelf: 'center',
+              marginTop: 25 }}
             onPress={() => navigate('Match')} 
           />
           <View style={styles.list}>

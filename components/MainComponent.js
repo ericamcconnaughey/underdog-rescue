@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import Adopt from './AdoptComponent';
 import Match from './MatchComponent';
-import PetInfo from './PetInfoComponent';
+import Favorites from './FavoritesComponent';
 import { PETS } from '../shared/pets';
 import { View, Platform, Text, StyleSheet, Image, ScrollView, SafeAreaView } from 'react-native';
 import { createStackNavigator, createDrawerNavigator, 
@@ -21,18 +21,54 @@ const AdoptNavigator = createStackNavigator(
         color: '#F6EFE4'
       },
       headerLeft: <Icon
-        name='dog'
+        name='cat'
         type='font-awesome'
         style={styles.stackIcon}
         onPress={() => navigation.toggleDrawer()} />
     })
   },
     Match: { screen: Match },
-    PetInfo: {screen: PetInfo },
+    Favorites: { screen: Favorites }
   },
 
   {
     initialRouteName: 'Adopt',
+    navigationOptions: {
+      headerStyle: {
+        backgroundColor: '#F8BC3C'
+      },
+      headerTintColor: '#F6EFE4',
+      headerTitleStyle: {
+        color: '#F6EFE4'
+      }
+    }
+  }
+);
+
+const FavoritesNavigator = createStackNavigator(
+  {
+    Favorites: { 
+    screen: Favorites, 
+    navigationOptions: ({navigation}) => ({
+      headerStyle: {
+        backgroundColor: '#F8BC3C'
+      },
+      headerTintColor: '#664441',
+      headerTitleStyle: {
+        color: '#F6EFE4'
+      },
+      headerLeft: <Icon
+        name='heart'
+        type='font-awesome'
+        style={styles.stackIcon}
+        onPress={() => navigation.toggleDrawer()} />
+    })
+  },
+    Favorites: { screen: Favorites }
+  },
+
+  {
+    initialRouteName: 'Favorites',
     navigationOptions: {
       headerStyle: {
         backgroundColor: '#F8BC3C'
@@ -59,7 +95,7 @@ const CustomDrawerContentComponent = props => (
           <Text style={styles.drawerHeaderText}>Underdog Rescue</Text>
         </View>
       </View>
-      <DrawerItems {...props} />
+      <DrawerItems {...props} style={styles.drawerItemText} />
     </SafeAreaView>
   </ScrollView>
 )
@@ -76,8 +112,21 @@ const MainNavigator = createDrawerNavigator(
               size={24}
               color= '#F6EFE4' />
         )
-      },
-    }
+      }
+    },
+    Favorites: {
+      screen: FavoritesNavigator,
+      navigationOptions: {
+        drawerIcon: () => (
+          <Icon 
+            name='heart'
+            type='font-awesome'
+            size={24}
+            color= '#F6EFE4' />
+        )
+      }
+    },
+
   },
   {
     drawerBackgroundColor: '#F8633B',
@@ -124,6 +173,9 @@ const styles = StyleSheet.create({
     color: '#F6EFE4',
     fontSize: 20,
     fontWeight: 'bold'
+  },
+  drawerItemText: {
+    color: '#F6EFE4',
   },
   drawerImage: {
     margin: 10,
