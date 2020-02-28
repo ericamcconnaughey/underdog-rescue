@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import Adopt from './AdoptComponent';
 import Match from './MatchComponent';
-import PetInfo from './PetInfoComponent';
+import Favorites from './FavoritesComponent';
 import About from './AboutComponent';
 import Volunteer from './VolunteerComponent';
 import Contact from './ContactComponent';
@@ -32,43 +32,7 @@ const HomeNavigator = createStackNavigator(
     })
   },
     Match: { screen: Match },
-    PetInfo: {screen: PetInfo },
-  },
-
-  {
-    navigationOptions: {
-      headerStyle: {
-        backgroundColor: '#F8BC3C'
-      },
-      headerTintColor: '#F6EFE4',
-      headerTitleStyle: {
-        color: '#F6EFE4'
-      }
-    }
-  }
-);
-
-const ContactNavigator = createStackNavigator(
-  {
-    Contact : { 
-    screen: Contact, 
-    navigationOptions: ({navigation}) => ({
-      headerStyle: {
-        backgroundColor: '#F8BC3C'
-      },
-      headerTintColor: '#664441',
-      headerTitleStyle: {
-        color: '#F6EFE4'
-      },
-      headerLeft: <Icon
-        name='edit'
-        type='font-awesome'
-        style={styles.stackIcon}
-        onPress={() => navigation.toggleDrawer()} />
-    })
-  },
-    Match: { screen: Match },
-    PetInfo: {screen: PetInfo },
+    Favorites: {screen: Favorites },
   },
 
   {
@@ -103,8 +67,6 @@ const AboutNavigator = createStackNavigator(
         onPress={() => navigation.toggleDrawer()} />
     })
   },
-    Match: { screen: Match },
-    PetInfo: {screen: PetInfo },
   },
 
   {
@@ -120,11 +82,10 @@ const AboutNavigator = createStackNavigator(
   }
 );
 
-
-const VolunteerNavigator = createStackNavigator(
+const ContactNavigator = createStackNavigator(
   {
-   Volunteer : { 
-    screen: Volunteer, 
+    Contact : { 
+    screen: Contact, 
     navigationOptions: ({navigation}) => ({
       headerStyle: {
         backgroundColor: '#F8BC3C'
@@ -134,14 +95,12 @@ const VolunteerNavigator = createStackNavigator(
         color: '#F6EFE4'
       },
       headerLeft: <Icon
-        name='user'
+        name='edit'
         type='font-awesome'
         style={styles.stackIcon}
         onPress={() => navigation.toggleDrawer()} />
     })
   },
-    Match: { screen: Match },
-    PetInfo: {screen: PetInfo },
   },
 
   {
@@ -170,14 +129,14 @@ const AdoptNavigator = createStackNavigator(
         color: '#F6EFE4'
       },
       headerLeft: <Icon
-        name='dog'
+        name='cat'
         type='font-awesome'
         style={styles.stackIcon}
         onPress={() => navigation.toggleDrawer()} />
     })
   },
     Match: { screen: Match },
-    PetInfo: {screen: PetInfo },
+    Favorites: {screen: Favorites },
   },
 
   {
@@ -194,6 +153,73 @@ const AdoptNavigator = createStackNavigator(
   }
 );
 
+const FavoritesNavigator = createStackNavigator(
+  {
+    Favorites : { 
+    screen: Favorites, 
+    navigationOptions: ({navigation}) => ({
+      headerStyle: {
+        backgroundColor: '#F8BC3C'
+      },
+      headerTintColor: '#664441',
+      headerTitleStyle: {
+        color: '#F6EFE4'
+      },
+      headerLeft: <Icon
+        name='heart'
+        type='font-awesome'
+        style={styles.stackIcon}
+        onPress={() => navigation.toggleDrawer()} />
+    })
+  },
+  },
+
+  {
+    navigationOptions: {
+      headerStyle: {
+        backgroundColor: '#F8BC3C'
+      },
+      headerTintColor: '#F6EFE4',
+      headerTitleStyle: {
+        color: '#F6EFE4'
+      }
+    }
+  }
+);
+
+const VolunteerNavigator = createStackNavigator(
+  {
+   Volunteer : { 
+    screen: Volunteer, 
+    navigationOptions: ({navigation}) => ({
+      headerStyle: {
+        backgroundColor: '#F8BC3C'
+      },
+      headerTintColor: '#664441',
+      headerTitleStyle: {
+        color: '#F6EFE4'
+      },
+      headerLeft: <Icon
+        name='user'
+        type='font-awesome'
+        style={styles.stackIcon}
+        onPress={() => navigation.toggleDrawer()} />
+    })
+  },
+  },
+
+  {
+    navigationOptions: {
+      headerStyle: {
+        backgroundColor: '#F8BC3C'
+      },
+      headerTintColor: '#F6EFE4',
+      headerTitleStyle: {
+        color: '#F6EFE4'
+      }
+    }
+  }
+);
 
 
 
@@ -274,6 +300,20 @@ const MainNavigator = createDrawerNavigator(
       }
     },
 
+    Favorites: {
+      screen: FavoritesNavigator,
+      navigationOptions: {
+        drawerIcon: () => (
+          <Icon 
+              name='heart'
+              type='font-awesome'
+              size={24}
+              color= '#F6EFE4' 
+              />
+        )
+      }
+    },
+
     Volunteer: {
       screen: VolunteerNavigator,
       navigationOptions: {
@@ -286,11 +326,8 @@ const MainNavigator = createDrawerNavigator(
               />
         )
       }
-    },
-
-
+    }
   },
-
   
   {
     drawerBackgroundColor: '#F8633B',
