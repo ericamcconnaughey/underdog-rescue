@@ -57,7 +57,7 @@ class Match extends Component {
         // image={{uri: baseUrl + pet.image}}
       >
         <View style={{ height: 200 }}>
-          <Image source={{uri: baseUrl + pet.image}}
+          <Image source={require('./images/bella.jpg')}
             style={{ width: '100%', height: 200 }} />
         </View>
         <View style={styles.details}>
@@ -69,13 +69,16 @@ class Match extends Component {
   }
 
   renderNoMoreCards = () => {
+    const { navigate } = this.props.navigation;
+    
     return (
       <Card title="There are no more adoptable pets">
         <Button
           title="View Favorites"
           large
           icon={{ name: 'heart', type: 'font-awesome', color: '#fff' }}
-          buttonStyle={{ backgroundColor: '#F8633B', marginTop: 10 }} />
+          buttonStyle={{ backgroundColor: '#F8633B', marginTop: 10 }}
+          onPress={() => navigate('Favorites')} />
       </Card>
     );
   };

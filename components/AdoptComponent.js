@@ -81,6 +81,10 @@ class Adopt extends Component {
 }
 
 const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    backgroundColor: '#F6EFE4',
+  },
   cardRow: {
     alignItems: 'center',
     justifyContent: 'center',
@@ -88,16 +92,9 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     margin: 20
   },
-  cardItem: {
-    flex: 1,
-    margin: 10
-  },
   modal: {
     justifyContent: 'center',
     margin: 20
-  },
-  container: {
-    flex: 1
   },
   content: {
     flex: 1
