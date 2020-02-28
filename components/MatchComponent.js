@@ -39,13 +39,16 @@ class Match extends Component {
   }
 
   renderNoMoreCards = () => {
+    const { navigate } = this.props.navigation;
+    
     return (
       <Card title="There are No More Adoptable Pets">
         <Button
           title="Do Something"
           large
-          icon={{ name: 'my-location' }}
-          backgroundColor='#03A9F4' />
+          icon={{ name: 'heart', type: 'font-awesome', color: '#fff' }}
+          buttonStyle={{ backgroundColor: '#F8633B', marginTop: 10 }}
+          onPress={() => navigate('Favorites')} />
       </Card>
     );
   };
