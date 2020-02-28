@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import Adopt from './AdoptComponent';
 import Match from './MatchComponent';
-import PetInfo from './PetInfoComponent';
+import Favorites from './FavoritesComponent';
 import About from './AboutComponent';
 import Volunteer from './VolunteerComponent';
 import Contact from './ContactComponent';
@@ -32,7 +32,7 @@ const HomeNavigator = createStackNavigator(
     })
   },
     Match: { screen: Match },
-    PetInfo: {screen: PetInfo },
+    Favorites: {screen: Favorites },
   },
 
   {
@@ -67,8 +67,6 @@ const ContactNavigator = createStackNavigator(
         onPress={() => navigation.toggleDrawer()} />
     })
   },
-    Match: { screen: Match },
-    PetInfo: {screen: PetInfo },
   },
 
   {
@@ -103,8 +101,6 @@ const AboutNavigator = createStackNavigator(
         onPress={() => navigation.toggleDrawer()} />
     })
   },
-    Match: { screen: Match },
-    PetInfo: {screen: PetInfo },
   },
 
   {
@@ -140,8 +136,6 @@ const VolunteerNavigator = createStackNavigator(
         onPress={() => navigation.toggleDrawer()} />
     })
   },
-    Match: { screen: Match },
-    PetInfo: {screen: PetInfo },
   },
 
   {
@@ -177,7 +171,7 @@ const AdoptNavigator = createStackNavigator(
     })
   },
     Match: { screen: Match },
-    PetInfo: {screen: PetInfo },
+    Favorites: {screen: Favorites },
   },
 
   {
