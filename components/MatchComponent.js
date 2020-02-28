@@ -1,38 +1,14 @@
 import React, { Component } from 'react';
 import { PETS } from '../shared/pets';
 import Swipe from './SwipeComponent';
-import { Text, View, Image, StyleSheet, SafeAreaView, Modal } from 'react-native';
+import { Text, View, Image, StyleSheet, SafeAreaView } from 'react-native';
 import { Card, Button } from 'react-native-elements';
-import { connect } from 'react-redux';
-import { baseUrl } from '../shared/baseUrl';
-// import { postFavorite } from '../redux/ActionCreators';
-
-
-const mapStateToProps = state => {
-  return {
-    pets: state.pets,
-    favorites: state.favorites
-  };
-};
-
-// const mapDispatchToProps = {
-//   postFavorite: petId => (postFavorite(petId))
-// };
 
 class Match extends Component {
   state = {
     likedPets: 0,
-    passedPets: 0,
-    showModal: false
+    passedPets: 0
   };
-
-  static navigationOptions = {
-    title: 'Find a Pet Match'
-  }
-
-  toggleModal() {
-    this.setState({showModal: !this.state.showModal});
-  }
 
   handleLikedPet = () => {
     this.setState(({ likedPets }) => ({
@@ -46,18 +22,12 @@ class Match extends Component {
     }));
   };
 
-  markFavorite(petId) {
-    this.props.postFavorite(petId);
-  }
-
   renderCards(pet) {
     return (
       <Card
-        title={pet.name}
-        // image={{uri: baseUrl + pet.image}}
-      >
+        title={pet.name}>
         <View style={{ height: 200 }}>
-          <Image source={{uri: baseUrl + pet.image}}
+          <Image source={require('./images/bella.jpg')}
             style={{ width: '100%', height: 200 }} />
         </View>
         <View style={styles.details}>
@@ -70,12 +40,12 @@ class Match extends Component {
 
   renderNoMoreCards = () => {
     return (
-      <Card title="There are no more adoptable pets">
+      <Card title="There are No More Adoptable Pets">
         <Button
-          title="View Favorites"
+          title="Do Something"
           large
-          icon={{ name: 'heart', type: 'font-awesome', color: '#fff' }}
-          buttonStyle={{ backgroundColor: '#F8633B', marginTop: 10 }} />
+          icon={{ name: 'my-location' }}
+          backgroundColor='#03A9F4' />
       </Card>
     );
   };
@@ -84,16 +54,6 @@ class Match extends Component {
   render() {
     return (
       <SafeAreaView style={styles.container}>
-        <Button
-          buttonStyle={{ 
-            backgroundColor: '#F8633B', 
-            width: 50, 
-            alignSelf: 'flex-end',
-            marginRight: 25,
-            marginTop: 25}}
-          icon={{ name: 'question', type: 'font-awesome', color: '#fff'}}
-          onPress={() => this.toggleModal()}
-        />
         <View style={styles.status}>
           <Text>Passed: {this.state.passedPets}</Text>
           <Text>Liked: {this.state.likedPets}</Text>
@@ -105,27 +65,6 @@ class Match extends Component {
           keyProp="petId"
           renderCard={this.renderCards}
           renderNoMoreCards={this.renderNoMoreCards} />
-        <View>
-          <Modal 
-            animationType={'slide'}
-            transparent={false}
-            visible={this.state.showModal}
-            onRequestClose={() => this.toggleModal()}>
-              <View style={styles.modal}>
-                <Text style={styles.modalTitle}>How it Works</Text>
-                <Text style={styles.modalText}>1. Read the pet information and decide if you are interested.</Text>
-                <Text style={styles.modalText}>2. If interested, swipe right. If not, swipe left.</Text>
-                <Text style={styles.modalText}>3. Go to Favorites to see which pets you liked.</Text>
-                <Button 
-                  onPress={() => {
-                    this.toggleModal();
-                  }}
-                  buttonStyle={{backgroundColor: '#F8633B' }}
-                  title='Close'
-                />
-              </View> 
-          </Modal>
-        </View>
       </SafeAreaView>
     );
   }
@@ -140,23 +79,7 @@ const styles = StyleSheet.create({
     paddingTop: 10,
     flexDirection: 'row',
     justifyContent: 'space-around'
-  },
-  modal: {
-    justifyContent: 'center',
-    margin: 20
-  },
-  modalTitle: {
-    fontSize: 24,
-    fontWeight: 'bold',
-    backgroundColor: '#361D1E',
-    textAlign: 'center',
-    color: '#fff',
-    marginBottom: 20
-  },
-  modalText: {
-    fontSize: 16,
-    margin: 10
   }
 });
 
-export default connect(mapStateToProps)(Match);
+export default Match;

@@ -1,20 +1,20 @@
 import React, { Component } from 'react';
 import { Text, View, FlatList, StyleSheet, Image, Button, ScrollView } from 'react-native';
 import { Card } from 'react-native-elements';
-import { PROCESS } from '../shared/process';
-//import * as Animatable from 'react-native-animatable';
+import { FEATURES } from '../shared/features';
 
-class Adopt extends Component {
+
+class Home extends Component {
 
   constructor(props) {
     super(props);
     this.state = {
-      process: PROCESS
+      features: FEATURES
     };
   }
 
   static navigationOptions = {
-    title: 'Adoption Process'
+    title: 'Home'
   };
 
   render() {
@@ -33,7 +33,7 @@ class Adopt extends Component {
     return (
       <ScrollView style={styles.container}>
         <View style={styles.content}>
-          <Image source={require('./images/process2.jpg')} />
+          <Image source={require('./images/Animal1.png')} />
           <Button
             title='Pet Match'
             color='#F8633B'
@@ -41,10 +41,10 @@ class Adopt extends Component {
           />
           <View style={styles.list}>
             <FlatList
-                data={this.state.process}
+                data={this.state.features}
                 renderItem={renderAdoptItem}
                 keyExtractor={item => item.id.toString()} />
-            <Image style={styles.image} source={require('./images/process1.jpg')} />
+            <Image style={styles.image} source={require('./images/Animal5.jpg')} />
           </View>
         </View>
       </ScrollView>
@@ -84,6 +84,4 @@ const styles = StyleSheet.create({
 });
 
 
-
-
-export default Adopt;
+export default Home;

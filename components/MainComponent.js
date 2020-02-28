@@ -1,19 +1,161 @@
 import React, { Component } from 'react';
 import Adopt from './AdoptComponent';
 import Match from './MatchComponent';
-import Favorites from './FavoritesComponent';
+import PetInfo from './PetInfoComponent';
+import About from './AboutComponent';
+import Volunteer from './VolunteerComponent';
+import Contact from './ContactComponent';
+import Home from './HomeComponent';
 import { PETS } from '../shared/pets';
 import { View, Platform, Text, StyleSheet, Image, ScrollView, SafeAreaView } from 'react-native';
 import { createStackNavigator, createDrawerNavigator, 
   DrawerItems } from 'react-navigation';
-import Icon from "react-native-vector-icons/FontAwesome5";
-import { connect } from 'react-redux';
-import { fetchPets, fetchProcess } from '../redux/ActionCreators';
+import Icon from "react-native-vector-icons/FontAwesome5"
 
-const mapDispatchToProps = {
-  fetchPets,
-  fetchProcess
-};
+const HomeNavigator = createStackNavigator(
+  {
+    Home : { 
+    screen: Home, 
+    navigationOptions: ({navigation}) => ({
+      headerStyle: {
+        backgroundColor: '#F8BC3C'
+      },
+      headerTintColor: '#664441',
+      headerTitleStyle: {
+        color: '#F6EFE4'
+      },
+      headerLeft: <Icon
+        name='home'
+        type='font-awesome'
+        style={styles.stackIcon}
+        onPress={() => navigation.toggleDrawer()} />
+    })
+  },
+    Match: { screen: Match },
+    PetInfo: {screen: PetInfo },
+  },
+
+  {
+    navigationOptions: {
+      headerStyle: {
+        backgroundColor: '#F8BC3C'
+      },
+      headerTintColor: '#F6EFE4',
+      headerTitleStyle: {
+        color: '#F6EFE4'
+      }
+    }
+  }
+);
+
+const ContactNavigator = createStackNavigator(
+  {
+    Contact : { 
+    screen: Contact, 
+    navigationOptions: ({navigation}) => ({
+      headerStyle: {
+        backgroundColor: '#F8BC3C'
+      },
+      headerTintColor: '#664441',
+      headerTitleStyle: {
+        color: '#F6EFE4'
+      },
+      headerLeft: <Icon
+        name='edit'
+        type='font-awesome'
+        style={styles.stackIcon}
+        onPress={() => navigation.toggleDrawer()} />
+    })
+  },
+    Match: { screen: Match },
+    PetInfo: {screen: PetInfo },
+  },
+
+  {
+    navigationOptions: {
+      headerStyle: {
+        backgroundColor: '#F8BC3C'
+      },
+      headerTintColor: '#F6EFE4',
+      headerTitleStyle: {
+        color: '#F6EFE4'
+      }
+    }
+  }
+);
+
+const AboutNavigator = createStackNavigator(
+  {
+    About : { 
+    screen: About, 
+    navigationOptions: ({navigation}) => ({
+      headerStyle: {
+        backgroundColor: '#F8BC3C'
+      },
+      headerTintColor: '#664441',
+      headerTitleStyle: {
+        color: '#F6EFE4'
+      },
+      headerLeft: <Icon
+        name='info-circle'
+        type='font-awesome'
+        style={styles.stackIcon}
+        onPress={() => navigation.toggleDrawer()} />
+    })
+  },
+    Match: { screen: Match },
+    PetInfo: {screen: PetInfo },
+  },
+
+  {
+    navigationOptions: {
+      headerStyle: {
+        backgroundColor: '#F8BC3C'
+      },
+      headerTintColor: '#F6EFE4',
+      headerTitleStyle: {
+        color: '#F6EFE4'
+      }
+    }
+  }
+);
+
+
+const VolunteerNavigator = createStackNavigator(
+  {
+   Volunteer : { 
+    screen: Volunteer, 
+    navigationOptions: ({navigation}) => ({
+      headerStyle: {
+        backgroundColor: '#F8BC3C'
+      },
+      headerTintColor: '#664441',
+      headerTitleStyle: {
+        color: '#F6EFE4'
+      },
+      headerLeft: <Icon
+        name='user'
+        type='font-awesome'
+        style={styles.stackIcon}
+        onPress={() => navigation.toggleDrawer()} />
+    })
+  },
+    Match: { screen: Match },
+    PetInfo: {screen: PetInfo },
+  },
+
+  {
+    navigationOptions: {
+      headerStyle: {
+        backgroundColor: '#F8BC3C'
+      },
+      headerTintColor: '#F6EFE4',
+      headerTitleStyle: {
+        color: '#F6EFE4'
+      }
+    }
+  }
+);
 
 const AdoptNavigator = createStackNavigator(
   {
@@ -28,14 +170,14 @@ const AdoptNavigator = createStackNavigator(
         color: '#F6EFE4'
       },
       headerLeft: <Icon
-        name='cat'
+        name='dog'
         type='font-awesome'
         style={styles.stackIcon}
         onPress={() => navigation.toggleDrawer()} />
     })
   },
     Match: { screen: Match },
-    Favorites: { screen: Favorites }
+    PetInfo: {screen: PetInfo },
   },
 
   {
@@ -52,41 +194,7 @@ const AdoptNavigator = createStackNavigator(
   }
 );
 
-const FavoritesNavigator = createStackNavigator(
-  {
-    Favorites: { 
-    screen: Favorites, 
-    navigationOptions: ({navigation}) => ({
-      headerStyle: {
-        backgroundColor: '#F8BC3C'
-      },
-      headerTintColor: '#664441',
-      headerTitleStyle: {
-        color: '#F6EFE4'
-      },
-      headerLeft: <Icon
-        name='heart'
-        type='font-awesome'
-        style={styles.stackIcon}
-        onPress={() => navigation.toggleDrawer()} />
-    })
-  },
-    Favorites: { screen: Favorites }
-  },
 
-  {
-    initialRouteName: 'Favorites',
-    navigationOptions: {
-      headerStyle: {
-        backgroundColor: '#F8BC3C'
-      },
-      headerTintColor: '#F6EFE4',
-      headerTitleStyle: {
-        color: '#F6EFE4'
-      }
-    }
-  }
-);
 
 
 const CustomDrawerContentComponent = props => (
@@ -102,13 +210,56 @@ const CustomDrawerContentComponent = props => (
           <Text style={styles.drawerHeaderText}>Underdog Rescue</Text>
         </View>
       </View>
-      <DrawerItems {...props} style={styles.drawerItemText} />
+      <DrawerItems {...props} />
     </SafeAreaView>
   </ScrollView>
 )
 
 const MainNavigator = createDrawerNavigator(
   {
+    Home: {
+      screen: HomeNavigator,
+      navigationOptions: {
+        drawerIcon: () => (
+          <Icon 
+              name='home'
+              type='font-awesome'
+              size={24}
+              color= '#F6EFE4' 
+              />
+        )
+      }
+    },
+
+    About: {
+      screen: AboutNavigator,
+      navigationOptions: {
+        drawerIcon: () => (
+          <Icon 
+              name='dog'
+              type='font-awesome'
+              size={24}
+              color= '#F6EFE4' 
+              />
+        )
+      }
+    },
+    
+    Contact: {
+      screen: ContactNavigator,
+      navigationOptions: {
+        drawerIcon: () => (
+          <Icon 
+              name='edit'
+              type='font-awesome'
+              size={24}
+              color= '#F6EFE4' 
+              />
+        )
+      }
+    },
+
+
     Adopt: {
       screen: AdoptNavigator,
       navigationOptions: {
@@ -117,34 +268,48 @@ const MainNavigator = createDrawerNavigator(
               name='cat'
               type='font-awesome'
               size={24}
-              color= '#F6EFE4' />
-        )
-      }
-    },
-    Favorites: {
-      screen: FavoritesNavigator,
-      navigationOptions: {
-        drawerIcon: () => (
-          <Icon 
-            name='heart'
-            type='font-awesome'
-            size={24}
-            color= '#F6EFE4' />
+              color= '#F6EFE4' 
+              />
         )
       }
     },
 
+    Volunteer: {
+      screen: VolunteerNavigator,
+      navigationOptions: {
+        drawerIcon: () => (
+          <Icon 
+              name='user'
+              type='font-awesome'
+              size={24}
+              color= '#F6EFE4' 
+              />
+        )
+      }
+    },
+
+
   },
+
+  
   {
     drawerBackgroundColor: '#F8633B',
+    drawerHeaderText: '#F6EFE4',
     contentComponent: CustomDrawerContentComponent
   }
 )
 
 class Main extends Component {
-  componentDidMount() {
-    this.props.fetchPets();
-    this.props.fetchProcess();
+  constructor(props) {
+    super(props);
+    this.state = {
+      pets: PETS,
+      selectedPet: null
+    };
+  }
+
+  onPetSelect(petId) {
+    this.setState({selectedPet: petId});
   }
 
   render() {
@@ -174,9 +339,6 @@ const styles = StyleSheet.create({
     fontSize: 20,
     fontWeight: 'bold'
   },
-  drawerItemText: {
-    color: '#F6EFE4',
-  },
   drawerImage: {
     margin: 10,
     height: 60,
@@ -189,4 +351,4 @@ const styles = StyleSheet.create({
   }
 });
 
-export default connect(null, mapDispatchToProps)(Main);
+export default Main;
