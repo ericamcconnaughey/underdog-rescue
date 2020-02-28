@@ -5,3 +5,5 @@ export const ADD_PETS = 'ADD_PETS';
 export const PROCESS_LOADING = 'PROCESS_LOADING';
 export const PROCESS_FAILED = 'PROCESS_FAILED';
 export const ADD_PROCESS = 'ADD_PROCESS';
+
+export const ADD_FAVORITE = 'ADD_FAVORITE';
