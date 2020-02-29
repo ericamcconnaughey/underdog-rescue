@@ -15,7 +15,7 @@ class Contact extends Component {
     return (
         <ScrollView>
             <Card title='Contact Information' wrapperStyle={{ margin: 20, marginBottom: 10}}>
-                <Text>Underdog Rescye </Text>
+                <Text>Underdog Rescue </Text>
                 <Text>P.O. Box 16453 </Text>
                 <Text style={{ marginBottom: 20}}>St. Louis Park, MN 55416 </Text>
                 
