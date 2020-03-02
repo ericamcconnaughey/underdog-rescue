@@ -80,12 +80,12 @@ class Swipe extends Component {
       ...position.getLayout(),
       transform: [{ rotate }]
     };
-  }
+  };
 
   renderCards = () => {
-    if (this.state.index >= this.props.data.length) {
-      return this.props.renderNoMoreCards();
-    }
+    // if (this.state.index >= this.props.data.length) {
+    //   return this.props.renderNoMoreCards();
+    // }
 
     const deck = this.props.data.map((item, i) => {
       if (i < this.state.index) { return null; }

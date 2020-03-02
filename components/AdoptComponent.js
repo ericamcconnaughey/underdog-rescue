@@ -1,17 +1,25 @@
 import React, { Component } from 'react';
 import { Text, View, FlatList, StyleSheet, Image, Button, ScrollView } from 'react-native';
 import { Card } from 'react-native-elements';
-import { PROCESS } from '../shared/process';
-//import * as Animatable from 'react-native-animatable';
+// import { PROCESS } from '../shared/process';
+import Loading from './LoadingComponent';
+import { connect } from 'react-redux';
+import { baseUrl } from '../shared/baseUrl';
+
+const mapStateToProps = state => {
+  return {
+    process: state.process
+  };
+};
 
 class Adopt extends Component {
 
-  constructor(props) {
-    super(props);
-    this.state = {
-      process: PROCESS
-    };
-  }
+  // constructor(props) {
+  //   super(props);
+  //   this.state = {
+  //     process: PROCESS
+  //   };
+  // }
 
   static navigationOptions = {
     title: 'Adoption Process'
@@ -30,6 +38,26 @@ class Adopt extends Component {
       )
     };
 
+    if (this.props.process.isLoading) {
+      return (
+        <ScrollView>
+          <Card>
+            <Loading />
+          </Card>
+        </ScrollView>
+      );
+    }
+
+    if (this.props.process.errMess) {
+      return (
+        <ScrollView>
+          <Card>
+            <Text>{this.props.process.errMess}</Text>
+          </Card>
+        </ScrollView>
+      )
+    }
+
     return (
       <ScrollView style={styles.container}>
         <View style={styles.content}>
@@ -41,7 +69,7 @@ class Adopt extends Component {
           />
           <View style={styles.list}>
             <FlatList
-                data={this.state.process}
+                data={this.props.process.process}
                 renderItem={renderAdoptItem}
                 keyExtractor={item => item.id.toString()} />
             <Image style={styles.image} source={require('./images/process1.jpg')} />
@@ -81,6 +109,4 @@ const styles = StyleSheet.create({
 });
 
 
-
-
-export default Adopt;
+export default connect(mapStateToProps)(Adopt);

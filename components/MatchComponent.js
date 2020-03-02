@@ -1,16 +1,81 @@
 import React, { Component } from 'react';
-import { PETS } from '../shared/pets';
+// import { PETS } from '../shared/pets';
 import Swipe from './SwipeComponent';
-import Favorites from './FavoritesComponent';
+import Loading from './LoadingComponent';
 import { Text, View, Image, StyleSheet, SafeAreaView, Modal } from 'react-native';
 import { Card, Button } from 'react-native-elements';
+import { connect } from 'react-redux';
+import { baseUrl } from '../shared/baseUrl';
+import { postFavorite } from '../redux/ActionCreators';
+
+const mapStateToProps = state => {
+  return {
+    pets: state.pets,
+    favorites: state.favorites
+  };
+};
+
+const mapDispatchToProps = {
+  postFavorite: petId => (postFavorite(petId))
+};
+
+function RenderCards(props) {
+  const {pet} = props;
+  const { navigate } = this.props.navigation;
+
+  if (this.props.pets.isLoading) {
+    return <Loading />;
+  }
+
+  if (this.props.pets.errMess) {
+    return (
+      <View>
+        <Text>{this.props.pets.errMess}</Text>
+      </View>
+    );
+  }
+
+  if (pet) {
+      return (
+        <Card
+          title={pet.name}>
+          <View style={{ height: 200 }}>
+            {/* <Image source={require('./images/bella.jpg')} */}
+            <Image source={{uri: baseUrl + pet.image}}
+              style={{ width: '100%', height: 200 }} />
+          </View>
+          <View style={styles.details}>
+            <Text style={{margin: 10}}>{pet.info} {pet.type}</Text>
+            <Text style={{margin: 10}}>{pet.description}</Text>
+          </View>
+        </Card>
+      );
+    }
+    return (
+      <Card title="There are No More Adoptable Pets">
+        <Button
+          title="Go to My Favorites"
+          large
+          icon={{ name: 'heart', type: 'font-awesome', color: '#fff' }}
+          buttonStyle={{ backgroundColor: '#F8633B', marginTop: 10 }}
+          onPress={() => navigate('Favorites')} />
+      </Card>
+    );
+  };
+  
 
 class Match extends Component {
   state = {
     likedPets: 0,
     passedPets: 0, 
-    showModal: false
+    showModal: false,
+    favorite: false
   };
+
+  markFavorite(petId) {
+    this.props.postFavorite(petId);
+  }
+
 
   static navigationOptions = {
     title: 'Find a Pet Match'
@@ -30,41 +95,46 @@ class Match extends Component {
 
   toggleModal() {
     this.setState({showModal: !this.state.showModal});
-  }
-
-  renderCards(pet) {
-    return (
-      <Card
-        title={pet.name}>
-        <View style={{ height: 200 }}>
-          <Image source={require('./images/bella.jpg')}
-            style={{ width: '100%', height: 200 }} />
-        </View>
-        <View style={styles.details}>
-          <Text style={{margin: 10}}>{pet.info} {pet.type}</Text>
-          <Text style={{margin: 10}}>{pet.description}</Text>
-        </View>
-      </Card>
-    );
-  }
-
-  renderNoMoreCards = () => {
-    const { navigate } = this.props.navigation;
-    
-    return (
-      <Card title="There are No More Adoptable Pets">
-        <Button
-          title="Go to My Favorites"
-          large
-          icon={{ name: 'heart', type: 'font-awesome', color: '#fff' }}
-          buttonStyle={{ backgroundColor: '#F8633B', marginTop: 10 }}
-          onPress={() => navigate('Favorites')} />
-      </Card>
-    );
   };
+
+  // renderCards(pet) {
+  //   return (
+  //     <Card
+  //       title={pet.name}>
+  //       <View style={{ height: 200 }}>
+  //         {/* <Image source={require('./images/bella.jpg')} */}
+  //         <Image source={{uri: baseUrl + pet.image}}
+  //           style={{ width: '100%', height: 200 }} />
+  //       </View>
+  //       <View style={styles.details}>
+  //         <Text style={{margin: 10}}>{pet.info} {pet.type}</Text>
+  //         <Text style={{margin: 10}}>{pet.description}</Text>
+  //       </View>
+  //     </Card>
+  //   );
+  // }
+
+  // renderNoMoreCards = () => {
+  //   const { navigate } = this.props.navigation;
+    
+  //   return (
+  //     <Card title="There are No More Adoptable Pets">
+  //       <Button
+  //         title="Go to My Favorites"
+  //         large
+  //         icon={{ name: 'heart', type: 'font-awesome', color: '#fff' }}
+  //         buttonStyle={{ backgroundColor: '#F8633B', marginTop: 10 }}
+  //         onPress={() => navigate('Favorites')} />
+  //     </Card>
+  //   );
+  // };
   
 
   render() {
+    const petId = this.props.navigation.getParam('petId');
+    const pet = this.props.pets.pets.filter( pet => pet.id === petId)[0];
+    const pets = this.props.pets.pets;
+
     return (
       <SafeAreaView style={styles.container}>
         <Button
@@ -84,10 +154,14 @@ class Match extends Component {
         <Swipe 
           onSwipeRight={this.handleLikedPet}
           onSwipeLeft={this.handlePassedPet}
-          data={PETS}
-          keyProp="petId"
-          renderCard={this.renderCards}
-          renderNoMoreCards={this.renderNoMoreCards} />
+          data={pets}
+          keyProp="petId" 
+          //renderCards={renderCards}
+          //renderNoMoreCards={renderNoMoreCards}
+          />
+          <RenderCards pets={pets}
+            favorite={this.props.favorites.includes(petId)}
+            markFavorite={() => this.markFavorite(petId)} />
           <View>
           <Modal 
             animationType={'slide'}
@@ -142,4 +216,4 @@ const styles = StyleSheet.create({
   }
 });
 
-export default Match;
+export default connect(mapStateToProps, mapDispatchToProps)(Match);

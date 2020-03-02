@@ -1,5 +1,7 @@
+//NOT CONNECTED TO REDUX
+
 import React, { Component } from 'react';
-import { Text, View, FlatList, StyleSheet, Image, Button, ScrollView } from 'react-native';
+import { Text, StyleSheet, Image, ScrollView } from 'react-native';
 import { Card } from 'react-native-elements';
 import { FEATURES } from '../shared/features';
 

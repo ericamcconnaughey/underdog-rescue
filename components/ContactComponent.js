@@ -1,3 +1,5 @@
+//NOT CONNECTED TO REDUX
+
 import React, { Component } from 'react';
 import { Text, ScrollView, Button } from 'react-native';
 import { Card } from 'react-native-elements';

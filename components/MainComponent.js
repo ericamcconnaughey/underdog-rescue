@@ -11,6 +11,13 @@ import { View, Platform, Text, StyleSheet, Image, ScrollView, SafeAreaView } fro
 import { createStackNavigator, createDrawerNavigator, 
   DrawerItems } from 'react-navigation';
 import Icon from "react-native-vector-icons/FontAwesome5"
+import { connect } from 'react-redux';
+import { fetchPets, fetchProcess } from '../redux/ActionCreators';
+
+const mapDispatchToProps = {
+  fetchPets,
+  fetchProcess
+};
 
 const HomeNavigator = createStackNavigator(
   {
@@ -337,17 +344,23 @@ const MainNavigator = createDrawerNavigator(
 )
 
 class Main extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      pets: PETS,
-      selectedPet: null
-    };
+  // constructor(props) {
+  //   super(props);
+  //   this.state = {
+  //     pets: PETS,
+  //     selectedPet: null
+  //   };
+  // }
+
+  componentDidMount() {
+    this.props.fetchPets();
+    this.props.fetchProcess();
   }
 
-  onPetSelect(petId) {
-    this.setState({selectedPet: petId});
-  }
+  // onPetSelect(petId) {
+  //   this.setState({selectedPet: petId});
+  // }
+
 
   render() {
     return (
@@ -388,4 +401,4 @@ const styles = StyleSheet.create({
   }
 });
 
-export default Main;
+export default connect(null, mapDispatchToProps)(Main);

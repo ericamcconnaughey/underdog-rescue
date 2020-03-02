@@ -1,3 +1,6 @@
+//NOT CURRENTLY USED
+//NOT CONNECTED TO REDUX
+
 import React, { Component } from 'react';
 import { PETS } from '../shared/pets';
 import { Text, View, ScrollView, FlatList, 
